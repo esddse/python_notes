@@ -1,4 +1,6 @@
 
+[参考博客](http://www.cnblogs.com/tina-python/p/5508402.html)
+
 ## 普通字符和11个元字符
 
 |符号|含义|正则表达式示例|可匹配字符串示例|
@@ -30,3 +32,130 @@
 |\Z|仅匹配字符串结尾，同$|abc\Z|abc|
 |\b|匹配\w和\W之间，即匹配单词边界匹配一个单词边界，也就是指单词和空格间的位置。例如， 'er\b' 可以匹配"never" 中的 'er'，但不能匹配 "verb" 中的 'er'。|\babc\b;a\b!bc|空格abc空格;a!bc|
 |\B|[^\b]|a\Bbc|abc|
+
+## 常用功能函数
+
+### compile
+
+编译正则表达式模式，返回一个对象的模式
+
+```
+re.compile(pattern, flags=0)
+```
+
+例子:
+```
+import re
+tt = "Tina is a good girl, she is cool, clever, and so on..."
+rr = re.compile(r'\w*oo\w*')
+print(rr.findall(tt))   #查找所有包含'oo'的单词
+执行结果如下：
+['good', 'cool']
+```
+
+### match
+
+决定RE是否在字符串刚开始的位置匹配。//注：这个方法并不是完全匹配。当pattern结束时若string还有剩余字符，仍然视为成功。想要完全匹配，可以在表达式末尾加上边界匹配符'$'
+
+```
+re,match(pattern, string, flags=0)
+```
+
+例子：
+```
+print(re.match('com','comwww.runcomoob').group())
+print(re.match('com','Comwww.runcomoob',re.I).group())
+执行结果如下：
+com
+com
+```
+
+### search
+
+re.search函数会在字符串内查找模式匹配,只要找到第一个匹配然后返回，如果字符串没有匹配，则返回None
+
+```
+re.search(pattern, string, flags=0)
+```
+
+例子:
+```
+print(re.search('\dcom','www.4comrunoob.5com').group())
+执行结果如下：
+4com
+```
+
+** 注意 ** match和search一旦匹配成功，就是一个match object对象，而match object对象有以下方法：
+
+* group() 返回被 RE 匹配的字符串
+* start() 返回匹配开始的位置
+* end() 返回匹配结束的位置
+* span() 返回一个元组包含匹配 (开始,结束) 的位置
+* group() 返回re整体匹配的字符串，可以一次输入多个组号，对应组号匹配的字符串
+
+例子:
+```
+import re
+a = "123abc456"
+ print(re.search("([0-9]*)([a-z]*)([0-9]*)",a).group(0))   #123abc456,返回整体
+ print(re.search("([0-9]*)([a-z]*)([0-9]*)",a).group(1))   #123
+ print(re.search("([0-9]*)([a-z]*)([0-9]*)",a).group(2))   #abc
+ print(re.search("([0-9]*)([a-z]*)([0-9]*)",a).group(3))   #456
+###group(1) 列出第一个括号匹配部分，group(2) 列出第二个括号匹配部分，group(3) 列出第三个括号匹配部分。###
+``` 
+
+### findall
+
+re.findall遍历匹配，可以获取字符串中所有匹配的字符串，返回一个列表
+
+```
+re.findall(pattern, string, flags=0)
+```
+
+例子：
+```
+import re
+tt = "Tina is a good girl, she is cool, clever, and so on..."
+rr = re.compile(r'\w*oo\w*')
+print(rr.findall(tt))
+print(re.findall(r'(\w)*oo(\w)',tt))#()表示子表达式 
+执行结果如下：
+['good', 'cool']
+[('g', 'd'), ('c', 'l')]
+```
+
+### split
+
+按照能够匹配的子串将string分割后返回列表
+
+```
+re.split(pattern, string[, maxsplit])
+maxsplit用于指定最大分割次数，不指定将全部分割
+```
+
+例子:
+```
+print(re.split('\d+','one1two2three3four4five5'))
+执行结果如下：
+['one', 'two', 'three', 'four', 'five', '']
+```
+
+### sub
+
+使用re替换string中每一个匹配的子串后返回替换后的字符串
+
+```
+re.sub(pattern, repl, string, count)
+```
+
+例子：
+```
+import re
+text = "JGood is a handsome boy, he is cool, clever, and so on..."
+print(re.sub(r'\s+', '-', text))
+执行结果如下：
+JGood-is-a-handsome-boy,-he-is-cool,-clever,-and-so-on...
+其中第二个函数是替换后的字符串；本例中为'-'
+
+第四个参数指替换个数。默认为0，表示每个匹配项都替换。
+```
