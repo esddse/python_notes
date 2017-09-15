@@ -12,7 +12,7 @@ plt.ylabel('some numbers')
 plt.show()
 ```
 
-![基本]('./pics/matplotlib/basic.png')
+![基本](pics/matplotlib/basic.png)
 
 
 可以通过第三个参数改变样式：
@@ -21,7 +21,7 @@ plt.show()
 plt.plot(x, y, 'bo') # plot x and y using blue circle markers
 ```
 
-![样式]('./pics/matplotlib/style.png')
+![样式](pics/matplotlib/style.png)
 
 下表是可选样式:
 
@@ -75,7 +75,7 @@ plt.plot(x, x, 'r--', x, x**2, 'bs', x, x**3, 'g^')
 plt.show()
 ```
 
-![多曲线]('./pics/matplotlib/multi.png')
+![多曲线](pics/matplotlib/multi.png)
 
 ## 创建多个图形
 
@@ -106,7 +106,7 @@ plt.scatter(x,y)
 plt.show()
 ```
 
-![散点图](./pics/matplotlib/scatter.png)
+![散点图](pics/matplotlib/scatter.png)
 
 
 ## 彩色映射散点图
@@ -124,7 +124,7 @@ plt.show()
 
 图上点的大小和颜色根据数据的大小产生了变化
 
-![散点图](./pics/matplotlib/color_scatter.png)
+![散点图](pics/matplotlib/color_scatter.png)
 
 ## 直方图
 
@@ -137,4 +137,4 @@ plt.show()
 
 ``hist()``的第二个参数代表数据容器的个数，即将数据分成多少个直方
 
-![散点图](./pics/matplotlib/hist.png)
+![散点图](pics/matplotlib/hist.png)
