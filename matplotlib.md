@@ -138,3 +138,34 @@ plt.show()
 ``hist()``的第二个参数代表数据容器的个数，即将数据分成多少个直方
 
 ![散点图](pics/matplotlib/hist.png)
+
+## 3D画图
+
+导入包
+```
+import matplotlib.pyplot as plt  
+from mpl_toolkits.mplot3d import Axes3D  
+```
+
+### 散点图
+```
+ax = plt.figure().add_subplot(111, projection = '3d')  
+#基于ax变量绘制三维图  
+#xs表示x方向的变量  
+#ys表示y方向的变量  
+#zs表示z方向的变量，这三个方向上的变量都可以用list的形式表示  
+#m表示点的形式，o是圆形的点，^是三角形（marker)  
+#c表示颜色（color for short）  
+ax.scatter(xs, ys, zs, c = 'r', marker = '^') #点为红色三角形  
+  
+#设置坐标轴  
+ax.set_xlabel('X Label')  
+ax.set_ylabel('Y Label')  
+ax.set_zlabel('Z Label')  
+  
+#显示图像  
+plt.show()  
+```
+
+![3D散点图](pics/matplotlib/3d_scatter.PNG)
+
